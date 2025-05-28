@@ -95,20 +95,14 @@
         }
     </style>
     <script>
-        // Sostituisci i nomi dei file con le tue immagini reali
-        const images = [
-            'rs3.jpg',
-            'rs3_interno.jpg',
-            'rs3_lato.jpg'
-        ];
-
         document.addEventListener('DOMContentLoaded', function() {
             const mainImg = document.getElementById('main-img');
             const thumbnails = document.querySelectorAll('.thumbnail');
 
-            thumbnails.forEach((thumb, idx) => {
+            thumbnails.forEach((thumb) => {
                 thumb.addEventListener('click', function() {
-                    mainImg.src = images[idx];
+                    // Usa l'attributo data-big per il percorso dell'immagine grande
+                    mainImg.src = thumb.getAttribute('data-big');
                     thumbnails.forEach(t => t.classList.remove('selected'));
                     thumb.classList.add('selected');
                 });
@@ -125,12 +119,13 @@
 <body>
     <div class="container">
         <div class="main-img-wrapper">
-            <img id="main-img" src="rs3.jpg" alt="Audi RS3">
+            <!-- L'immagine iniziale DEVE corrispondere al data-big della thumb selezionata -->
+            <img id="main-img" src="rr fornt.jpg" alt="Audi RS3">
         </div>
         <div class="thumbnails">
-            <div class="thumbnail selected"><img src="rr fornt.jpg" alt="Frontale"></div>
-            <div class="thumbnail"><img src="rr back.jpg" alt="Retro"></div>
-            <div class="thumbnail"><img src="rr in.jpg" alt="Interni"></div>
+            <div class="thumbnail selected" data-big="rr fornt.jpg"><img src="foto1.jpg" alt="Vista frontale"></div>
+            <div class="thumbnail" data-big="foto2.jpg"><img src="rr in.jpg" alt="Vista posteriore"></div>
+            <div class="thumbnail" data-big="foto3.jpg"><img src="rr back.jpg" alt="Interni"></div>
         </div>
         <h1>Audi RS3</h1>
         <p>
