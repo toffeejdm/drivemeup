@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>BMW i8 - DriveMeUp</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f8f8f8; }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .confirmation {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+    <script>
+        function mostraConferma(event) {
+            event.preventDefault();
+            document.getElementById('form-veicolo').style.display = 'none';
+            document.getElementById('conferma').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="rs3.jpg" alt="BMW i8">
+        <h1>BMW i8</h1>
+        <p>
+            La BMW i8 è una coupé sportiva ibrida plug-in, sinonimo di innovazione e design futuristico. Perfetta per chi desidera prestazioni ed ecosostenibilità.
+        </p>
+        <form id="form-veicolo" onsubmit="mostraConferma(event)">
+            <input type="text" name="nome" placeholder="Il tuo nome" required>
+            <input type="email" name="email" placeholder="La tua email" required>
+            <textarea name="messaggio" placeholder="Richiesta o informazioni aggiuntive" required></textarea>
+            <button type="submit">Invia richiesta</button>
+        </form>
+        <div class="confirmation" id="conferma">
+            Grazie per la tua richiesta! Ti ricontatteremo al più presto.
+        </div>
+    </div>
+</body>
+</html>
