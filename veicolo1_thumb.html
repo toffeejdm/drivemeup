@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audi RS3 - DriveMeUp</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f8f8f8; }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .main-img-wrapper {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background: #eaeaea;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .main-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            background: #eaeaea;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .thumbnail.selected, .thumbnail:hover {
+            border: 2px solid #007bff;
+        }
+        .thumbnail img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .confirmation {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+    <script>
+        // Sostituisci i nomi dei file con le tue immagini reali
+        const images = [
+            'rs3.jpg',
+            'rs3_interno.jpg',
+            'rs3_lato.jpg'
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImg = document.getElementById('main-img');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+
+            thumbnails.forEach((thumb, idx) => {
+                thumb.addEventListener('click', function() {
+                    mainImg.src = images[idx];
+                    thumbnails.forEach(t => t.classList.remove('selected'));
+                    thumb.classList.add('selected');
+                });
+            });
+        });
+
+        function mostraConferma(event) {
+            event.preventDefault();
+            document.getElementById('form-veicolo').style.display = 'none';
+            document.getElementById('conferma').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="main-img-wrapper">
+            <img id="main-img" src="rs3.jpg" alt="Audi RS3">
+        </div>
+        <div class="thumbnails">
+            <div class="thumbnail selected"><img src="rs3.jpg" alt="Vista frontale"></div>
+            <div class="thumbnail"><img src="rs3_interno.jpg" alt="Interni"></div>
+            <div class="thumbnail"><img src="rs3_lato.jpg" alt="Vista laterale"></div>
+        </div>
+        <h1>Audi RS3</h1>
+        <p>
+            L'Audi RS3 è una compatta sportiva ad alte prestazioni, dotata di un potente motore 2.5 TFSI, trazione integrale quattro e design aggressivo. Ideale per chi cerca emozioni e comfort.
+        </p>
+        <form id="form-veicolo" onsubmit="mostraConferma(event)">
+            <input type="text" name="nome" placeholder="Il tuo nome" required>
+            <input type="email" name="email" placeholder="La tua email" required>
+            <textarea name="messaggio" placeholder="Richiesta o informazioni aggiuntive" required></textarea>
+            <button type="submit">Invia richiesta</button>
+        </form>
+        <div class="confirmation" id="conferma">
+            Grazie per la tua richiesta! Ti ricontatteremo al più presto.
+        </div>
+    </div>
+</body>
+</html>
